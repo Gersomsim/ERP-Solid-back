@@ -7,14 +7,9 @@ import { envs } from '../config/envs.config';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: envs.db.conexion,
-      entities: [__dirname + '/**/*.entity.{js,ts}'],
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
     }),
   ],
 })
-export class DatabaseModule {
-  constructor() {
-    console.log(envs.db.conexion);
-  }
-}
+export class DatabaseModule {}

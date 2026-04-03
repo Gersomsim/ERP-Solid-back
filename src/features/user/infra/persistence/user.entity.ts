@@ -1,10 +1,22 @@
-import { BaseEntity } from '@features/common';
 import { ProfileEntity } from '@features/profile/infra/persistence';
 import { TenantEntity } from '@features/tenant/infra/persistence';
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('users')
-export class UserEntity extends BaseEntity {
+export class UserEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
   @Column()
   email: string;
 
@@ -26,14 +38,22 @@ export class UserEntity extends BaseEntity {
   @Column({ name: 'mfa_enabled', default: false })
   mfaEnabled: boolean;
 
-  @ManyToOne(() => TenantEntity, (tenant) => tenant.users)
+  @ManyToOne(() => TenantEntity)
   @JoinColumn({ name: 'tenant_id' })
   tenant: TenantEntity;
 
-  @OneToOne(() => ProfileEntity, (profile) => profile.user, {
+  @OneToOne(() => ProfileEntity, {
     cascade: true,
-    eager: true,
   })
   @JoinColumn({ name: 'profile_id' })
   profile: ProfileEntity;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn() // Soft Delete
+  deletedAt: Date;
 }

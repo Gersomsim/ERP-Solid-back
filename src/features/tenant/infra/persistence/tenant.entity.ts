@@ -1,9 +1,19 @@
-import { BaseEntity } from '@features/common';
-import { UserEntity } from '@features/user/infra/persistence';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { UserEntity } from '@features/user/infra/persistence/user.entity';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('tenants')
-export class TenantEntity extends BaseEntity {
+export class TenantEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
   @Column()
   name: string;
 
@@ -21,4 +31,13 @@ export class TenantEntity extends BaseEntity {
 
   @OneToMany(() => UserEntity, (user) => user.tenant)
   users: UserEntity[];
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn() // Soft Delete
+  deletedAt: Date;
 }

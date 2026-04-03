@@ -54,8 +54,6 @@ if (error) {
   throw new Error(error.message);
 }
 
-console.log(value.DB_CONEXION);
-
 export const envs = {
   app: {
     env: value.APP_ENV,

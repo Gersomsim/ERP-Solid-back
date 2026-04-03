@@ -6,6 +6,6 @@ import { ProfileEntity } from './persistence';
   imports: [TypeOrmModule.forFeature([ProfileEntity])],
   controllers: [],
   providers: [],
-  exports: [TypeOrmModule],
+  exports: [],
 })
 export class ProfileModule {}
