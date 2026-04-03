@@ -1,5 +1,6 @@
-import { UserEntity } from 'src/features/user/infra/persistence/user.entity';
-import { BaseEntity, Column, Entity, OneToMany } from 'typeorm';
+import { BaseEntity } from '@features/common';
+import { UserEntity } from '@features/user/infra/persistence';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('tenants')
 export class TenantEntity extends BaseEntity {

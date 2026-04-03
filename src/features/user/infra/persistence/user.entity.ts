@@ -1,13 +1,7 @@
-import { ProfileEntity } from 'src/features/profile/infra/persistence';
-import { TenantEntity } from 'src/features/tenant/infra/persistence';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
-} from 'typeorm';
+import { BaseEntity } from '@features/common';
+import { ProfileEntity } from '@features/profile/infra/persistence';
+import { TenantEntity } from '@features/tenant/infra/persistence';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {

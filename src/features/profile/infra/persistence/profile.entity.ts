@@ -1,6 +1,7 @@
 // modules/users/entities/profile.entity.ts
-import { UserEntity } from 'src/features/user/infra/persistence/user.entity';
-import { BaseEntity, Column, Entity, OneToOne } from 'typeorm';
+import { BaseEntity } from '@features/common';
+import { UserEntity } from '@features/user/infra/persistence';
+import { Column, Entity, OneToOne } from 'typeorm';
 
 @Entity('profiles')
 export class ProfileEntity extends BaseEntity {
