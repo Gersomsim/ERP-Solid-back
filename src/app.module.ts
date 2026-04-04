@@ -8,9 +8,11 @@ import { UserModule } from '@features/user/infra/user.module';
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './core/database/database.module';
 import { MailerModule } from './core/mailer/mailer.module';
+import { PermissionModule } from './features/permission/infra/permission.module';
 
 @Module({
   imports: [
+    PermissionModule,
     DatabaseModule,
     AuthModule,
     ProfileModule,

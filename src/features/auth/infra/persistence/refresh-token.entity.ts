@@ -26,10 +26,10 @@ export class RefreshTokenEntity {
   @Column({ name: 'revoked_at', nullable: true, type: 'timestamp' })
   revokedAt: Date | null;
 
-  @Column({ name: 'ip_address', nullable: true })
+  @Column({ name: 'ip_address', nullable: true, type: 'varchar' })
   ipAddress: string | null;
 
-  @Column({ name: 'user_agent', nullable: true })
+  @Column({ name: 'user_agent', nullable: true, type: 'varchar' })
   userAgent: string | null;
 
   @CreateDateColumn({ name: 'created_at' })

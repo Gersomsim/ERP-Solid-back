@@ -32,10 +32,10 @@ export class UserEntity {
   @Column({ name: 'last_login_at', nullable: true, type: 'timestamp' })
   lastLoginAt?: Date;
 
-  @Column({ name: 'mfa_secret', nullable: true })
+  @Column({ name: 'mfa_secret', nullable: true, type: 'varchar' })
   mfaSecret: string | null;
 
-  @Column({ name: 'mfa_enabled', default: false })
+  @Column({ name: 'mfa_enabled', default: false, type: 'boolean' })
   mfaEnabled: boolean;
 
   @ManyToOne(() => TenantEntity)

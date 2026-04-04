@@ -9,6 +9,7 @@ import { envs } from '../config/envs.config';
       url: envs.db.conexion,
       entities: ['../../features/**/**.entity.{js,ts}'],
       synchronize: true,
+      autoLoadEntities: true,
     }),
   ],
 })
