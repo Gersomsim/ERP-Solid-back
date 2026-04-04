@@ -1,10 +1,10 @@
 import {
   BadRequestException as BadRequest,
-  EntityNotFoundException,
-  ExternalServiceException,
-  ForbiddenResourceException,
-  PersistenceException,
-  UnauthorizedException,
+  EntityNotFoundException as EntityNotFound,
+  ExternalServiceException as ExternalService,
+  ForbiddenResourceException as ForbiddenResource,
+  PersistenceException as Persistence,
+  UnauthorizedException as Unauthorized,
 } from '@features/common/exceptions';
 import {
   ArgumentsHost,
@@ -13,6 +13,8 @@ import {
   ConflictException,
   ExceptionFilter,
   HttpException,
+  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Response } from 'express';
 
@@ -90,23 +92,23 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
       status = 400;
       message = exception.message;
     }
-    if (exception instanceof UnauthorizedException) {
+    if (exception instanceof Unauthorized) {
       status = 401;
       message = exception.message;
     }
-    if (exception instanceof ForbiddenResourceException) {
+    if (exception instanceof ForbiddenResource) {
       status = 403;
       message = exception.message;
     }
-    if (exception instanceof EntityNotFoundException) {
+    if (exception instanceof EntityNotFound) {
       status = 404;
       message = exception.message;
     }
-    if (exception instanceof ExternalServiceException) {
+    if (exception instanceof ExternalService) {
       status = 502;
       message = exception.message;
     }
-    if (exception instanceof PersistenceException) {
+    if (exception instanceof Persistence) {
       status = 500;
       message = exception.message;
     }
@@ -119,6 +121,14 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     if (exception instanceof BadRequestException) {
       details = exceptionResponse.message;
       message = exception.message;
+    }
+    if (exception instanceof NotFoundException) {
+      details = exceptionResponse.message;
+      message = exceptionResponse.error;
+    }
+    if (exception instanceof UnauthorizedException) {
+      details = exceptionResponse.message;
+      message = exceptionResponse.error;
     }
     return { message, details };
   }

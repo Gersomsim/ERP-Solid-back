@@ -1,4 +1,5 @@
 import { Auth, GetUser, Permissions } from '@core/decorators';
+import { Response } from '@core/utils';
 import {
   CreateRoleCommand,
   DeleteRoleCommand,
@@ -31,21 +32,20 @@ export class RoleController {
 
   @Post()
   @Permissions('roles.create')
-  async create(
-    @Body() dto: CreateRoleDto,
-    @GetUser() user: User,
-  ): Promise<Role> {
-    return this.commandBus.execute<CreateRoleCommand, Role>(
+  async create(@Body() dto: CreateRoleDto, @GetUser() user: User) {
+    const role = await this.commandBus.execute<CreateRoleCommand, Role>(
       new CreateRoleCommand(dto.name, user.tenantId, dto.permissionSlugs),
     );
+    return Response.success(role, 'Role created successfully');
   }
 
   @Get()
   @Permissions('roles.view')
-  async findAll(@GetUser() user: User): Promise<Role[]> {
-    return this.queryBus.execute<FindAllRolesQuery, Role[]>(
+  async findAll(@GetUser() user: User) {
+    const roles = await this.queryBus.execute<FindAllRolesQuery, Role[]>(
       new FindAllRolesQuery(user.tenantId),
     );
+    return Response.success(roles);
   }
 
   @Get(':id')
@@ -56,21 +56,20 @@ export class RoleController {
 
   @Patch(':id')
   @Permissions('roles.update')
-  async update(
-    @Param('id') id: string,
-    @Body() dto: UpdateRoleDto,
-  ): Promise<Role> {
-    return this.commandBus.execute<UpdateRoleCommand, Role>(
+  async update(@Param('id') id: string, @Body() dto: UpdateRoleDto) {
+    const role = await this.commandBus.execute<UpdateRoleCommand, Role>(
       new UpdateRoleCommand(id, dto.name, dto.permissionSlugs),
     );
+    return Response.success(role, 'Role updated successfully');
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @Permissions('roles.delete')
-  async delete(@Param('id') id: string): Promise<void> {
-    return this.commandBus.execute<DeleteRoleCommand, void>(
+  async delete(@Param('id') id: string) {
+    await this.commandBus.execute<DeleteRoleCommand, void>(
       new DeleteRoleCommand(id),
     );
+    return Response.success(null, 'Role deleted successfully');
   }
 }

@@ -1,4 +1,5 @@
 import { Auth, Permissions } from '@core/decorators';
+import { Response } from '@core/utils';
 import {
   CreateTenantCommand,
   UpdateTenantCommand,
@@ -22,29 +23,28 @@ export class TenantController {
   ) {}
 
   @Post()
-  async create(@Body() dto: CreateTenantDto): Promise<Tenant> {
-    return this.commandBus.execute<CreateTenantCommand, Tenant>(
+  async create(@Body() dto: CreateTenantDto) {
+    const tenant = await this.commandBus.execute<CreateTenantCommand, Tenant>(
       new CreateTenantCommand(dto.name, dto.slug, dto.taxIdentifier),
     );
+    return Response.success(tenant, 'Tenant created successfully');
   }
 
   @Auth()
   @Get(':id')
   @Permissions('tenants.view')
-  async findOne(@Param('id') id: string): Promise<Tenant> {
-    return this.queryBus.execute<FindTenantQuery, Tenant>(
+  async findOne(@Param('id') id: string) {
+    const tenant = await this.queryBus.execute<FindTenantQuery, Tenant>(
       new FindTenantQuery(id),
     );
+    return Response.success(tenant);
   }
 
   @Auth()
   @Patch(':id')
   @Permissions('tenants.update')
-  async update(
-    @Param('id') id: string,
-    @Body() dto: UpdateTenantDto,
-  ): Promise<Tenant> {
-    return this.commandBus.execute<UpdateTenantCommand, Tenant>(
+  async update(@Param('id') id: string, @Body() dto: UpdateTenantDto) {
+    const tenant = await this.commandBus.execute<UpdateTenantCommand, Tenant>(
       new UpdateTenantCommand(
         id,
         dto.name,
@@ -53,6 +53,7 @@ export class TenantController {
         dto.status,
       ),
     );
+    return Response.success(tenant, 'Tenant updated successfully');
   }
 
   @Auth()
@@ -61,9 +62,11 @@ export class TenantController {
   async updateSettings(
     @Param('id') id: string,
     @Body() dto: UpdateTenantSettingsDto,
-  ): Promise<Tenant> {
-    return this.commandBus.execute<UpdateTenantSettingsCommand, Tenant>(
-      new UpdateTenantSettingsCommand(id, dto.settings),
-    );
+  ) {
+    const tenant = await this.commandBus.execute<
+      UpdateTenantSettingsCommand,
+      Tenant
+    >(new UpdateTenantSettingsCommand(id, dto.settings));
+    return Response.success(tenant, 'Tenant settings updated successfully');
   }
 }

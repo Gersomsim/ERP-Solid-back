@@ -1,4 +1,5 @@
 import { Auth, GetUser, Permissions } from '@core/decorators';
+import { Response } from '@core/utils';
 import { UpdateProfileCommand } from '@features/profile/app/commands';
 import { Profile } from '@features/profile/domain';
 import { User } from '@features/user/domain';
@@ -13,11 +14,11 @@ export class ProfileController {
 
   @Patch()
   @Permissions('profile.update')
-  async update(
-    @Body() dto: UpdateProfileDto,
-    @GetUser() user: User,
-  ): Promise<Profile> {
-    return this.commandBus.execute<UpdateProfileCommand, Profile>(
+  async update(@Body() dto: UpdateProfileDto, @GetUser() user: User) {
+    const profile = await this.commandBus.execute<
+      UpdateProfileCommand,
+      Profile
+    >(
       new UpdateProfileCommand(
         user.id,
         dto.firstName,
@@ -27,5 +28,6 @@ export class ProfileController {
         dto.phoneNumber,
       ),
     );
+    return Response.success(profile, 'Profile updated successfully');
   }
 }

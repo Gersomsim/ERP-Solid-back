@@ -1,3 +1,4 @@
+import { BadRequestException } from '@features/common/exceptions';
 import { type IPermissionRepository } from '@features/permission/domain';
 import { PermissionToken } from '@features/permission/infra/persistence';
 import { Profile } from '@features/profile/domain';
@@ -24,7 +25,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
   async execute(command: RegisterCommand): Promise<string> {
     const existing = await this.userRepository.findByEmail(command.email);
     if (existing) {
-      throw new Error('User already exists');
+      throw new BadRequestException('User already exists');
     }
 
     let roleId: string;

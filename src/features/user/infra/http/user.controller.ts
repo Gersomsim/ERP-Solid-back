@@ -1,4 +1,5 @@
 import { Auth, Permissions } from '@core/decorators';
+import { Response } from '@core/utils';
 import { Pagination } from '@features/common/interfaces';
 import {
   ChangePasswordCommand,
@@ -40,7 +41,7 @@ export class UserController {
         dto.lastName,
       ),
     );
-    return id;
+    return Response.success(id, 'User created successfully');
   }
 
   @Get()
@@ -64,7 +65,7 @@ export class UserController {
       ChangePasswordCommand,
       boolean
     >(new ChangePasswordCommand(dto.id, dto.newPassword, dto.oldPassword));
-    return isSuccess;
+    return Response.success(isSuccess, 'Password changed successfully');
   }
 
   @Patch(':id')
@@ -73,6 +74,6 @@ export class UserController {
     const isSuccess = await this.commandBus.execute<UpdateUserCommand, boolean>(
       new UpdateUserCommand(id, dto.mfaEnabled, dto.mfaSecret),
     );
-    return isSuccess;
+    return Response.success(isSuccess, 'User updated successfully');
   }
 }

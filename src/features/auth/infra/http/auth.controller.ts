@@ -1,3 +1,4 @@
+import { Response } from '@core/utils';
 import {
   ForgotPasswordCommand,
   LoginCommand,
@@ -32,7 +33,10 @@ export class AuthController {
       ipAddress,
       userAgent,
     );
-    return this.commandBus.execute<LoginCommand, LoginResponseDto>(command);
+    const data = await this.commandBus.execute<LoginCommand, LoginResponseDto>(
+      command,
+    );
+    return Response.success(data, 'Login successful');
   }
 
   @Post('register')
@@ -45,30 +49,43 @@ export class AuthController {
       dto.tenantId,
       dto.roleId,
     );
-    return this.commandBus.execute<RegisterCommand, string>(command);
+    const message = await this.commandBus.execute<RegisterCommand, string>(
+      command,
+    );
+    return Response.success(null, message);
   }
 
   @Post('refresh')
   async refresh(@Body() dto: RefreshDto) {
     const command = new RefreshCommand(dto.refreshToken);
-    return this.commandBus.execute<RefreshCommand, LoginResponseDto>(command);
+    const data = await this.commandBus.execute<
+      RefreshCommand,
+      LoginResponseDto
+    >(command);
+    return Response.success(data, 'Refresh successful');
   }
 
   @Post('logout')
   async logout(@Body() dto: RefreshDto) {
     const command = new LogoutCommand(dto.refreshToken);
-    return this.commandBus.execute<LogoutCommand, boolean>(command);
+    await this.commandBus.execute<LogoutCommand, boolean>(command);
+    return Response.success(null, 'Logout successful');
   }
 
   @Post('forgot-password')
   async forgotPassword(@Body() dto: ForgotPasswordDto) {
     const command = new ForgotPasswordCommand(dto.email);
-    return this.commandBus.execute<ForgotPasswordCommand, void>(command);
+    const message = await this.commandBus.execute<
+      ForgotPasswordCommand,
+      string
+    >(command);
+    return Response.success(null, message);
   }
 
   @Post('reset-password')
   async resetPassword(@Body() dto: ResetPasswordDto) {
     const command = new ResetPasswordCommand(dto.token, dto.password);
-    return this.commandBus.execute<ResetPasswordCommand, boolean>(command);
+    await this.commandBus.execute<ResetPasswordCommand, string>(command);
+    return Response.success(null, 'Password reset successful');
   }
 }
