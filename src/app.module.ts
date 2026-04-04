@@ -9,6 +9,7 @@ import { Module } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { DatabaseModule } from './core/database/database.module';
 import { MailerModule } from './core/mailer/mailer.module';
+import { CustomerModule } from './features/customer/infra/customer.module';
 import { PermissionModule } from './features/permission/infra/permission.module';
 import { RoleModule } from './features/role/infra/role.module';
 
@@ -23,6 +24,7 @@ import { RoleModule } from './features/role/infra/role.module';
     TokenModule,
     MailerModule,
     RoleModule,
+    CustomerModule,
   ],
   controllers: [],
   providers: [
