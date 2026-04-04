@@ -1,10 +1,9 @@
-import { Auth } from '@core/decorators/auth.decorator';
+import { Auth, GetUser, Permissions } from '@core/decorators';
 import { UpdateProfileCommand } from '@features/profile/app/commands';
 import { Profile } from '@features/profile/domain';
 import { User } from '@features/user/domain';
-import { Body, Controller, Patch, Req } from '@nestjs/common';
+import { Body, Controller, Patch } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { Request } from 'express';
 import { UpdateProfileDto } from './dto';
 
 @Auth()
@@ -13,13 +12,14 @@ export class ProfileController {
   constructor(private readonly commandBus: CommandBus) {}
 
   @Patch()
+  @Permissions('profile.update')
   async update(
     @Body() dto: UpdateProfileDto,
-    @Req() req: Request & { user: { user: User } },
+    @GetUser() user: User,
   ): Promise<Profile> {
     return this.commandBus.execute<UpdateProfileCommand, Profile>(
       new UpdateProfileCommand(
-        req.user.user.id,
+        user.id,
         dto.firstName,
         dto.lastName,
         dto.avatarUrl,

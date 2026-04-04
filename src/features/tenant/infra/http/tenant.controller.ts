@@ -1,4 +1,4 @@
-import { Auth } from '@core/decorators/auth.decorator';
+import { Auth, Permissions } from '@core/decorators';
 import {
   CreateTenantCommand,
   UpdateTenantCommand,
@@ -30,6 +30,7 @@ export class TenantController {
 
   @Auth()
   @Get(':id')
+  @Permissions('tenants.view')
   async findOne(@Param('id') id: string): Promise<Tenant> {
     return this.queryBus.execute<FindTenantQuery, Tenant>(
       new FindTenantQuery(id),
@@ -38,6 +39,7 @@ export class TenantController {
 
   @Auth()
   @Patch(':id')
+  @Permissions('tenants.update')
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateTenantDto,
@@ -55,6 +57,7 @@ export class TenantController {
 
   @Auth()
   @Patch(':id/settings')
+  @Permissions('tenants.settings')
   async updateSettings(
     @Param('id') id: string,
     @Body() dto: UpdateTenantSettingsDto,

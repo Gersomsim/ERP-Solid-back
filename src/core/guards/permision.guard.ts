@@ -13,11 +13,12 @@ export class PermissionsGuard implements CanActivate {
     );
     if (!requiredPermissions) return true;
 
-    const { user } = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest();
+    const user = request.user?.user;
 
     // Verificamos si el slug del permiso requerido está en la lista de permisos del rol del usuario
     return requiredPermissions.every((perm) =>
-      user.role?.permissions?.some((p) => p.slug === perm),
+      user?.role?.permissions?.some((p: { slug: string }) => p.slug === perm),
     );
   }
 }

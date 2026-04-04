@@ -1,5 +1,4 @@
-import { GetUser } from '@core/decorators';
-import { Auth } from '@core/decorators/auth.decorator';
+import { Auth, GetUser, Permissions } from '@core/decorators';
 import {
   CreateRoleCommand,
   DeleteRoleCommand,
@@ -13,6 +12,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -29,6 +30,7 @@ export class RoleController {
   ) {}
 
   @Post()
+  @Permissions('roles.create')
   async create(
     @Body() dto: CreateRoleDto,
     @GetUser() user: User,
@@ -39,6 +41,7 @@ export class RoleController {
   }
 
   @Get()
+  @Permissions('roles.view')
   async findAll(@GetUser() user: User): Promise<Role[]> {
     return this.queryBus.execute<FindAllRolesQuery, Role[]>(
       new FindAllRolesQuery(user.tenantId),
@@ -46,11 +49,13 @@ export class RoleController {
   }
 
   @Get(':id')
+  @Permissions('roles.view')
   async findOne(@Param('id') id: string): Promise<Role> {
     return this.queryBus.execute<FindRoleQuery, Role>(new FindRoleQuery(id));
   }
 
   @Patch(':id')
+  @Permissions('roles.update')
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateRoleDto,
@@ -61,6 +66,8 @@ export class RoleController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Permissions('roles.delete')
   async delete(@Param('id') id: string): Promise<void> {
     return this.commandBus.execute<DeleteRoleCommand, void>(
       new DeleteRoleCommand(id),

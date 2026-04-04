@@ -1,4 +1,5 @@
 import { Profile } from '@features/profile/domain';
+import { Role } from '@features/role/domain';
 
 export class User {
   id: string;
@@ -10,6 +11,7 @@ export class User {
   mfaSecret: string | null;
   lastLoginAt?: Date;
   roleId?: string;
+  role?: Role;
   profile: Profile;
 
   constructor() {}

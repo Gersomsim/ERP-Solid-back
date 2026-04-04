@@ -1,4 +1,4 @@
-import { Auth } from '@core/decorators/auth.decorator';
+import { Auth, Permissions } from '@core/decorators';
 import { CreatePermissionCommand } from '@features/permission/app/commands';
 import { Permission } from '@features/permission/domain';
 import { Body, Controller, Post } from '@nestjs/common';
@@ -11,6 +11,7 @@ export class PermissionController {
   constructor(private readonly commandBus: CommandBus) {}
 
   @Post()
+  @Permissions('permissions.create')
   async create(@Body() dto: CreatePermissionDto): Promise<Permission> {
     return this.commandBus.execute<CreatePermissionCommand, Permission>(
       new CreatePermissionCommand(dto.slug, dto.name, dto.group),

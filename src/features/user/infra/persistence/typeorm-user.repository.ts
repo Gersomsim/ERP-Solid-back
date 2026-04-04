@@ -1,6 +1,8 @@
 import { Pagination } from '@features/common/interfaces';
 import { setPagination } from '@features/common/utils';
+import { Permission } from '@features/permission/domain';
 import { Profile } from '@features/profile/domain';
+import { Role } from '@features/role/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
@@ -129,6 +131,16 @@ export class TypeOrmUserRepository implements IUserRepository {
       user.profile.jobTitle,
       user.profile.phoneNumber,
     );
+    if (user.role) {
+      const permissions = (user.role.permissions ?? []).map((p) => {
+        const perm = Permission.create(p.slug, p.name, p.group);
+        perm.id = p.id;
+        return perm;
+      });
+      const role = Role.create(user.role.name, user.role.tenantId, permissions);
+      role.id = user.role.id;
+      userDomain.role = role;
+    }
     return userDomain;
   }
 }

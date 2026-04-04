@@ -1,4 +1,4 @@
-import { Auth } from '@core/decorators/auth.decorator';
+import { Auth, Permissions } from '@core/decorators';
 import { Pagination } from '@features/common/interfaces';
 import {
   ChangePasswordCommand,
@@ -29,6 +29,7 @@ export class UserController {
   ) {}
 
   @Post()
+  @Permissions('users.create')
   async create(@Body() dto: CreateUserDto) {
     const id = await this.commandBus.execute<CreateUserCommand, string>(
       new CreateUserCommand(
@@ -43,6 +44,7 @@ export class UserController {
   }
 
   @Get()
+  @Permissions('users.view')
   async findAll(@Query() query: FindAllUsersDto) {
     return this.queryBus.execute<FindAllUsersQuery, Pagination<User>>(
       new FindAllUsersQuery(
@@ -56,6 +58,7 @@ export class UserController {
   }
 
   @Patch('change-password')
+  @Permissions('users.change-password')
   async changePassword(@Body() dto: ChangePasswordDto) {
     const isSuccess = await this.commandBus.execute<
       ChangePasswordCommand,
@@ -65,6 +68,7 @@ export class UserController {
   }
 
   @Patch(':id')
+  @Permissions('users.update')
   async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     const isSuccess = await this.commandBus.execute<UpdateUserCommand, boolean>(
       new UpdateUserCommand(id, dto.mfaEnabled, dto.mfaSecret),
