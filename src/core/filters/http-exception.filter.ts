@@ -10,6 +10,7 @@ import {
   ArgumentsHost,
   BadRequestException,
   Catch,
+  ConflictException,
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
@@ -38,6 +39,15 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
       message = internalMessage;
     }
 
+    const {
+      status: dbStatus,
+      message: dbMessage,
+      details: dbDetails,
+    } = this.errorsDB(exception, details, message, status);
+    status = dbStatus;
+    message = dbMessage;
+    details = dbDetails;
+
     const code = this.getErrorCode(status);
     const errResponse = {
       success: false,
@@ -55,8 +65,22 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
         status: status,
       },
     };
-    this.catcheError(errResponse, request);
+    this.catcheError(errResponse, request, exception);
     response.status(status).json(errResponse);
+  }
+  private errorsDB(
+    exception: any,
+    details: any,
+    message: string,
+    status: number,
+  ) {
+    if (exception instanceof ConflictException) {
+      const exceptionResponse = exception.getResponse() as { message: string };
+      status = 409;
+      details = exceptionResponse.message;
+      message = 'Conflict exception';
+    }
+    return { status, message, details };
   }
 
   private internalErrors(exception: any) {
@@ -114,5 +138,7 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     };
     return errorCodes[status] || 'UNKNOWN_ERROR';
   }
-  private catcheError(errResponse: any, request: Request) {}
+  private catcheError(errResponse: any, request: Request, exception: any) {
+    console.log(exception);
+  }
 }
