@@ -1,9 +1,10 @@
+import { EntityNotFoundException } from '@features/common/exceptions';
 import { Pagination } from '@features/common/interfaces';
 import { setPagination } from '@features/common/utils';
 import { Permission } from '@features/permission/domain';
 import { Profile } from '@features/profile/domain';
 import { Role } from '@features/role/domain';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { FindOptionsWhere, Like, Repository } from 'typeorm';
@@ -43,7 +44,7 @@ export class TypeOrmUserRepository implements IUserRepository {
       where: { id: user.id },
     });
     if (!userEntity) {
-      throw new NotFoundException('User not found');
+      throw new EntityNotFoundException('User', user.id);
     }
     if (newPass) {
       const passHash = await bcrypt.hash(newPass, 10);
@@ -62,7 +63,7 @@ export class TypeOrmUserRepository implements IUserRepository {
       where: { id },
     });
     if (!userEntity) {
-      throw new NotFoundException('User not found');
+      throw new EntityNotFoundException('User', id);
     }
     await this.repository.softRemove(userEntity);
   }
