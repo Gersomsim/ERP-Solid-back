@@ -29,7 +29,17 @@ export class TypeOrmPermissionRepository implements IPermissionRepository {
     return entity ? this.toDomain(entity) : null;
   }
 
+  async findBySlugs(slugs: string[]): Promise<Permission[]> {
+    if (!slugs.length) return [];
+    const entities = await this.repository.find({
+      where: slugs.map((slug) => ({ slug })),
+    });
+    return entities.map((e) => this.toDomain(e));
+  }
+
   private toDomain(entity: PermissionEntity): Permission {
-    return Permission.create(entity.slug, entity.name, entity.group);
+    const permission = Permission.create(entity.slug, entity.name, entity.group);
+    permission.id = entity.id;
+    return permission;
   }
 }

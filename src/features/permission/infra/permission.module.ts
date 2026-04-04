@@ -10,6 +10,6 @@ import { PermissionSeeder } from './seeders/permission.seeder';
   imports: [TypeOrmModule.forFeature([PermissionEntity]), CqrsModule],
   controllers: [PermissionController],
   providers: [PermissionProvider, CreatePermissionHandler, PermissionSeeder],
-  exports: [TypeOrmModule],
+  exports: [PermissionProvider, TypeOrmModule],
 })
 export class PermissionModule {}

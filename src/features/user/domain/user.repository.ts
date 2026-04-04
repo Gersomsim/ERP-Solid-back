@@ -10,6 +10,7 @@ export interface IUserRepository {
   delete(id: string): Promise<void>;
   findAll(params: FindAllUsersParams): Promise<Pagination<User>>;
   validatePassword(password: string, hash: string): Promise<boolean>;
+  existsByRoleId(roleId: string): Promise<boolean>;
 }
 
 export interface FindAllUsersParams {

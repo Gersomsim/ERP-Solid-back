@@ -1,6 +1,8 @@
 import { envs } from '@core/config/envs.config';
 import { MailerModule as HandlebarsMailerModule } from '@nestjs-modules/mailer';
 import { Module } from '@nestjs/common';
+import { MailerTokenProvider } from './services/mail.token';
+import { TemplateRendererService } from './services/template-render.service';
 
 @Module({
   imports: [
@@ -19,5 +21,7 @@ import { Module } from '@nestjs/common';
       },
     }),
   ],
+  providers: [MailerTokenProvider, TemplateRendererService],
+  exports: [MailerTokenProvider],
 })
 export class MailerModule {}

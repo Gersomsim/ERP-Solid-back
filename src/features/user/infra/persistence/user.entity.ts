@@ -1,4 +1,5 @@
 import { ProfileEntity } from '@features/profile/infra/persistence';
+import { RoleEntity } from '@features/role/infra/persistence/role.entity';
 import { TenantEntity } from '@features/tenant/infra/persistence';
 import {
   Column,
@@ -57,4 +58,8 @@ export class UserEntity {
 
   @DeleteDateColumn() // Soft Delete
   deletedAt: Date;
+
+  @ManyToOne(() => RoleEntity, { eager: true })
+  @JoinColumn({ name: 'role_id' })
+  role: RoleEntity;
 }

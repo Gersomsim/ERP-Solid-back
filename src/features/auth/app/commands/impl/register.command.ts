@@ -5,5 +5,6 @@ export class RegisterCommand {
     public readonly firstName: string,
     public readonly lastName: string,
     public readonly tenantId: string,
+    public readonly roleId?: string,
   ) {}
 }

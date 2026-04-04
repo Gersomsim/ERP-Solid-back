@@ -27,6 +27,7 @@ export class TypeOrmUserRepository implements IUserRepository {
       mfaEnabled: user.mfaEnabled,
       mfaSecret: user.mfaSecret,
       lastLoginAt: user.lastLoginAt,
+      role: user.roleId ? { id: user.roleId } : undefined,
       profile: {
         firstName: user.profile.firstName,
         lastName: user.profile.lastName,
@@ -100,6 +101,11 @@ export class TypeOrmUserRepository implements IUserRepository {
     await this.repository.update(id, { lastLoginAt: date });
   }
 
+  async existsByRoleId(roleId: string): Promise<boolean> {
+    const count = await this.repository.count({ where: { role: { id: roleId } } });
+    return count > 0;
+  }
+
   async validatePassword(password: string, hash: string): Promise<boolean> {
     return bcrypt.compare(password, hash);
   }
@@ -114,6 +120,7 @@ export class TypeOrmUserRepository implements IUserRepository {
       user.mfaEnabled,
       user.mfaSecret,
       user.lastLoginAt,
+      user.role?.id,
     );
     userDomain.profile = Profile.create(
       user.profile.firstName,

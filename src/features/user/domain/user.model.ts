@@ -9,6 +9,7 @@ export class User {
   mfaEnabled: boolean;
   mfaSecret: string | null;
   lastLoginAt?: Date;
+  roleId?: string;
   profile: Profile;
 
   constructor() {}
@@ -22,6 +23,7 @@ export class User {
     mfaEnabled: boolean,
     mfaSecret: string | null,
     lastLoginAt?: Date,
+    roleId?: string,
   ): User {
     const user = new User();
     user.id = id;
@@ -32,6 +34,7 @@ export class User {
     user.mfaEnabled = mfaEnabled;
     user.mfaSecret = mfaSecret;
     user.lastLoginAt = lastLoginAt;
+    user.roleId = roleId;
     return user;
   }
 

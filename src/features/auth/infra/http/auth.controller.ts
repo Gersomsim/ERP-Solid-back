@@ -43,6 +43,7 @@ export class AuthController {
       dto.firstName,
       dto.lastName,
       dto.tenantId,
+      dto.roleId,
     );
     return this.commandBus.execute<RegisterCommand, string>(command);
   }

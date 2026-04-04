@@ -9,6 +9,7 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule } from './core/database/database.module';
 import { MailerModule } from './core/mailer/mailer.module';
 import { PermissionModule } from './features/permission/infra/permission.module';
+import { RoleModule } from './features/role/infra/role.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PermissionModule } from './features/permission/infra/permission.module'
     UserModule,
     TokenModule,
     MailerModule,
+    RoleModule,
   ],
   controllers: [],
   providers: [MailerTokenProvider, TemplateRendererService],
