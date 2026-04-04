@@ -118,7 +118,6 @@ export class TypeOrmUserRepository implements IUserRepository {
     userDomain.profile = Profile.create(
       user.profile.firstName,
       user.profile.lastName,
-      user.profile.id,
       user.profile.avatarUrl,
       user.profile.jobTitle,
       user.profile.phoneNumber,

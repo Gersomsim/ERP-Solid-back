@@ -19,6 +19,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
       command.email,
       command.password,
       command.tenantId,
+      true,
       false,
       '',
     );

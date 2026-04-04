@@ -21,6 +21,6 @@ export class ValidateTokenHandler implements IQueryHandler<ValidateTokenQuery> {
     if (token.expiresAt < now || token.type !== query.type) {
       return false;
     }
-    return this.tokenRepository.validateToken(query.token, token.hashedToken);
+    return this.tokenRepository.validateToken(query.token, token.hashedToken!);
   }
 }
