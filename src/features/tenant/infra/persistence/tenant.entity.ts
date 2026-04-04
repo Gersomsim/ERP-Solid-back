@@ -20,7 +20,7 @@ export class TenantEntity {
   @Column()
   slug: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, name: 'tax_identifier' })
   taxIdentifier: string;
 
   @Column({ type: 'jsonb', nullable: true })

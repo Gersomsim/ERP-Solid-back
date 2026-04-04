@@ -23,14 +23,14 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ name: 'tenant_id' })
   tenantId: string;
 
   @Column({ name: 'is_active', default: false })
   isActive: boolean;
 
   @Column({ name: 'last_login_at', nullable: true, type: 'timestamp' })
-  lastLoginAt: Date;
+  lastLoginAt?: Date;
 
   @Column({ name: 'mfa_secret', nullable: true })
   mfaSecret: string;
@@ -44,6 +44,7 @@ export class UserEntity {
 
   @OneToOne(() => ProfileEntity, {
     cascade: true,
+    eager: true,
   })
   @JoinColumn({ name: 'profile_id' })
   profile: ProfileEntity;

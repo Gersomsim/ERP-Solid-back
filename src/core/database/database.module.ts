@@ -7,8 +7,8 @@ import { envs } from '../config/envs.config';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: envs.db.conexion,
-      synchronize: false,
-      autoLoadEntities: true,
+      entities: ['../../features/**/**.entity.{js,ts}'],
+      synchronize: true,
     }),
   ],
 })

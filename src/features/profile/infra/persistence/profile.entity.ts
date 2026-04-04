@@ -15,20 +15,20 @@ export class ProfileEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, name: 'first_name' })
   firstName: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, name: 'last_name' })
   lastName: string;
 
-  @Column({ nullable: true })
-  phoneNumber: string;
+  @Column({ nullable: true, name: 'phone_number' })
+  phoneNumber?: string;
 
-  @Column({ nullable: true })
-  avatarUrl: string;
+  @Column({ nullable: true, name: 'avatar_url' })
+  avatarUrl?: string;
 
-  @Column({ nullable: true })
-  jobTitle: string;
+  @Column({ nullable: true, name: 'job_title' })
+  jobTitle?: string;
 
   // Relación inversa para poder acceder al usuario desde el perfil si fuera necesario
   @OneToOne(() => UserEntity, (user) => user.profile)
