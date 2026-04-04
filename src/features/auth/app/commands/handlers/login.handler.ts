@@ -6,6 +6,7 @@ import {
   type IRefreshTokenRepository,
 } from '@features/auth/domain';
 import { JwtToken, RefreshTokenToken } from '@features/auth/infra/persistence';
+import { UnauthorizedException } from '@features/common/exceptions';
 import type { IUserRepository, User } from '@features/user/domain';
 import { UserToken } from '@features/user/infra/persistence';
 import { Inject } from '@nestjs/common';
@@ -28,17 +29,19 @@ export class LoginHandler {
   ): Promise<{ user: User; token: string; refreshToken: string }> {
     const user = await this.userRepository.findByEmail(command.email);
     if (!user) {
-      throw new Error('Invalid credentials');
+      throw new UnauthorizedException('Invalid credentials');
     }
     if (!user.isActive) {
-      throw new Error('User is not active, please contact the administrator');
+      throw new UnauthorizedException(
+        'User is not active, please contact the administrator',
+      );
     }
     const isPasswordValid = await this.userRepository.validatePassword(
       command.password,
       user.password,
     );
     if (!isPasswordValid) {
-      throw new Error('Invalid credentials');
+      throw new UnauthorizedException('Invalid credentials');
     }
     await this.userRepository.updateLastLogin(user.id, new Date());
 
