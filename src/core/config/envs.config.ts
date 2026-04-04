@@ -13,6 +13,8 @@ interface ENV_SCHEMA {
   DB_CONEXION: string;
   JWT_SECRET: string;
   JWT_EXPIRES_IN: number;
+  JWT_REFRESH_SECRET: string;
+  JWT_REFRESH_EXPIRES_IN: number;
   MAIL_HOST: string;
   MAIL_PORT: number;
   MAIL_USER: string;
@@ -35,6 +37,8 @@ const schema = joi
     DB_CONEXION: joi.string().required(),
     JWT_SECRET: joi.string().required(),
     JWT_EXPIRES_IN: joi.number().required(),
+    JWT_REFRESH_SECRET: joi.string().required(),
+    JWT_REFRESH_EXPIRES_IN: joi.number().required(),
     MAIL_HOST: joi.string().required(),
     MAIL_PORT: joi.number().required(),
     MAIL_USER: joi.string().required(),
@@ -67,6 +71,8 @@ export const envs = {
   jwt: {
     secret: value.JWT_SECRET,
     expiresIn: value.JWT_EXPIRES_IN,
+    refreshSecret: value.JWT_REFRESH_SECRET,
+    refreshExpiresIn: value.JWT_REFRESH_EXPIRES_IN,
   },
   mail: {
     host: value.MAIL_HOST,

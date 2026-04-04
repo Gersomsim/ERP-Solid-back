@@ -17,7 +17,7 @@ export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -33,7 +33,7 @@ export class UserEntity {
   lastLoginAt?: Date;
 
   @Column({ name: 'mfa_secret', nullable: true })
-  mfaSecret: string;
+  mfaSecret: string | null;
 
   @Column({ name: 'mfa_enabled', default: false })
   mfaEnabled: boolean;

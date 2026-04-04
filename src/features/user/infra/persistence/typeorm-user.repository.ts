@@ -1,5 +1,6 @@
 import { Pagination } from '@features/common/interfaces';
 import { setPagination } from '@features/common/utils';
+import { Profile } from '@features/profile/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
@@ -49,6 +50,7 @@ export class TypeOrmUserRepository implements IUserRepository {
     userEntity.mfaEnabled = user.mfaEnabled;
     userEntity.mfaSecret = user.mfaSecret;
     userEntity.lastLoginAt = user.lastLoginAt;
+    userEntity.isActive = user.isActive;
     const savedUser = await this.repository.save(userEntity);
     return this.toDomain(savedUser);
   }
@@ -94,19 +96,33 @@ export class TypeOrmUserRepository implements IUserRepository {
     return user ? this.toDomain(user) : null;
   }
 
+  async updateLastLogin(id: string, date: Date): Promise<void> {
+    await this.repository.update(id, { lastLoginAt: date });
+  }
+
   async validatePassword(password: string, hash: string): Promise<boolean> {
     return bcrypt.compare(password, hash);
   }
 
   private toDomain(user: UserEntity): User {
-    return User.create(
+    const userDomain = User.create(
       user.id,
       user.email,
       user.password,
       user.tenantId,
+      user.isActive,
       user.mfaEnabled,
       user.mfaSecret,
       user.lastLoginAt,
     );
+    userDomain.profile = Profile.create(
+      user.profile.firstName,
+      user.profile.lastName,
+      user.profile.id,
+      user.profile.avatarUrl,
+      user.profile.jobTitle,
+      user.profile.phoneNumber,
+    );
+    return userDomain;
   }
 }

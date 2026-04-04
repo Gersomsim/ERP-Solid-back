@@ -6,6 +6,7 @@ export interface IUserRepository {
   findByEmail(email: string): Promise<User | null>;
   create(user: User): Promise<User>;
   update(user: User, newPass?: string): Promise<User>;
+  updateLastLogin(id: string, date: Date): Promise<void>;
   delete(id: string): Promise<void>;
   findAll(params: FindAllUsersParams): Promise<Pagination<User>>;
   validatePassword(password: string, hash: string): Promise<boolean>;

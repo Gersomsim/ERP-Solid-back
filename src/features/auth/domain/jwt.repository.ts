@@ -2,5 +2,5 @@ import { Payload } from './payload.model';
 
 export interface IJwtRepository {
   generateToken(payload: Payload): string;
-  verifyToken(token: string): Payload;
+  verifyToken(token: string, type: 'access' | 'refresh'): Payload | null;
 }

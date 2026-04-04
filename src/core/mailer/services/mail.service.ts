@@ -1,10 +1,11 @@
 import { envs } from '@core/config/envs.config';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import type { IMailerRepository } from '../repositories/mailer.repository';
 import { TemplateRendererService } from './template-render.service';
 
 @Injectable()
-export class MailService {
+export class MailService implements IMailerRepository {
   constructor(
     private readonly mailerService: MailerService,
     private readonly templateRenderService: TemplateRendererService,

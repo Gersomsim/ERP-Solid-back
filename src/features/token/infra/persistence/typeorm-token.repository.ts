@@ -13,7 +13,7 @@ export class TypeOrmTokenRepository implements ITokenRepository {
   ) {}
 
   async create(token: Token): Promise<Token> {
-    const tokenHash = await bcrypt.hash(token.hashedToken, 10);
+    const tokenHash = await bcrypt.hash(token.rawToken, 10);
     const entity = this.tokenRepository.create({
       userId: token.userId,
       selector: token.selector,
@@ -21,11 +21,26 @@ export class TypeOrmTokenRepository implements ITokenRepository {
       type: token.type,
       expiresAt: token.expiresAt,
     });
-    return this.tokenRepository.save(entity);
+    const tokenCreated = await this.tokenRepository.save(entity);
+    return this.toDomain(tokenCreated);
   }
+
+  async findByUserId(userId: string, type: string): Promise<Token | null> {
+    const entity = await this.tokenRepository.findOne({
+      where: { userId, type },
+    });
+    if (!entity || entity.isRevoked || entity.expiresAt < new Date()) {
+      return null;
+    }
+    return this.toDomain(entity);
+  }
+
   async findBySelector(selector: string): Promise<Token | null> {
     const entity = await this.tokenRepository.findOne({ where: { selector } });
-    return entity ? this.toDomain(entity) : null;
+    if (!entity || entity.isRevoked || entity.expiresAt < new Date()) {
+      return null;
+    }
+    return this.toDomain(entity);
   }
   async delete(id: string): Promise<void> {
     await this.tokenRepository.delete(id);
@@ -38,11 +53,16 @@ export class TypeOrmTokenRepository implements ITokenRepository {
       entity.id,
       entity.userId,
       entity.selector,
-      entity.hashedToken,
+      '',
       entity.type,
+      entity.isRevoked,
       entity.expiresAt,
       entity.createdAt,
       entity.updatedAt,
+      entity.hashedToken,
     );
+  }
+  async revoke(id: string): Promise<void> {
+    await this.tokenRepository.update(id, { isRevoked: true });
   }
 }

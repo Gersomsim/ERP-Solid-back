@@ -25,6 +25,9 @@ export class TokenEntity {
   @Column()
   type: string;
 
+  @Column({ name: 'is_revoked', default: false })
+  isRevoked: boolean;
+
   @Column({ name: 'expires_at' })
   expiresAt: Date;
 

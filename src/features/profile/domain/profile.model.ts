@@ -10,6 +10,7 @@ export class Profile {
   static create(
     firstName: string,
     lastName: string,
+    id?: string,
     avatarUrl?: string,
     jobTitle?: string,
     phoneNumber?: string,

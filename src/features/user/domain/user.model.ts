@@ -7,7 +7,7 @@ export class User {
   isActive: boolean;
   tenantId: string;
   mfaEnabled: boolean;
-  mfaSecret: string;
+  mfaSecret: string | null;
   lastLoginAt?: Date;
   profile: Profile;
 
@@ -18,8 +18,9 @@ export class User {
     email: string,
     password: string,
     tenantId: string,
+    isActive: boolean,
     mfaEnabled: boolean,
-    mfaSecret: string,
+    mfaSecret: string | null,
     lastLoginAt?: Date,
   ): User {
     const user = new User();
@@ -27,6 +28,7 @@ export class User {
     user.email = email;
     user.password = password;
     user.tenantId = tenantId;
+    user.isActive = isActive;
     user.mfaEnabled = mfaEnabled;
     user.mfaSecret = mfaSecret;
     user.lastLoginAt = lastLoginAt;
@@ -47,13 +49,18 @@ export class User {
 
   disableMfa() {
     this.mfaEnabled = false;
+    this.mfaSecret = null;
   }
 
   setMfaSecret(secret: string) {
     this.mfaSecret = secret;
+    this.mfaEnabled = true;
   }
 
   setLastLoginAt(date: Date) {
     this.lastLoginAt = date;
+  }
+  unSetPassword() {
+    this.password = '';
   }
 }
