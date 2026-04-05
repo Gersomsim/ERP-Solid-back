@@ -30,4 +30,10 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'roles.create',
   'roles.update',
   'roles.delete',
+
+  // ── Clientes ──────────────────────────────────────────────
+  'customers.view',
+  'customers.create',
+  'customers.update',
+  'customers.delete',
 ];

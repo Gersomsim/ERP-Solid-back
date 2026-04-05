@@ -37,4 +37,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'roles.create', name: 'Crear roles', group: 'Roles' },
   { slug: 'roles.update', name: 'Actualizar roles', group: 'Roles' },
   { slug: 'roles.delete', name: 'Eliminar roles', group: 'Roles' },
+
+  // ── Clientes ──────────────────────────────────────────────
+  { slug: 'customers.view', name: 'Ver clientes', group: 'Clientes' },
+  { slug: 'customers.create', name: 'Crear clientes', group: 'Clientes' },
+  { slug: 'customers.update', name: 'Actualizar clientes', group: 'Clientes' },
+  { slug: 'customers.delete', name: 'Eliminar clientes', group: 'Clientes' },
 ];
