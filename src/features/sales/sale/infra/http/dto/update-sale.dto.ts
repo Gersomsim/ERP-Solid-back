@@ -47,4 +47,8 @@ export class UpdateSaleDto {
   @IsEnum(SaleStatus)
   @IsOptional()
   status?: SaleStatus;
+
+  @IsUUID()
+  @IsOptional()
+  paymentTermId?: string;
 }

@@ -105,4 +105,10 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'commission-payments.create',
   'commission-payments.update',
   'commission-payments.delete',
+
+  // ── Condiciones de pago ───────────────────────────────────
+  'payment-terms.view',
+  'payment-terms.create',
+  'payment-terms.update',
+  'payment-terms.delete',
 ];

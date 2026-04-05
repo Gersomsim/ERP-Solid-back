@@ -22,6 +22,7 @@ export class CreateSaleHandler implements ICommandHandler<CreateSaleCommand> {
       command.tax,
       command.discount,
       command.total,
+      command.paymentTermId,
     );
     return this.saleRepository.create(sale);
   }

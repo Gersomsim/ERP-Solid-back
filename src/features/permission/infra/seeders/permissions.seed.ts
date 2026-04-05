@@ -112,4 +112,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'commission-payments.create', name: 'Crear pagos de comision', group: 'Pagos de comision' },
   { slug: 'commission-payments.update', name: 'Gestionar pagos de comision', group: 'Pagos de comision' },
   { slug: 'commission-payments.delete', name: 'Eliminar pagos de comision', group: 'Pagos de comision' },
+
+  // ── Condiciones de pago ───────────────────────────────────
+  { slug: 'payment-terms.view', name: 'Ver condiciones de pago', group: 'Condiciones de pago' },
+  { slug: 'payment-terms.create', name: 'Crear condiciones de pago', group: 'Condiciones de pago' },
+  { slug: 'payment-terms.update', name: 'Actualizar condiciones de pago', group: 'Condiciones de pago' },
+  { slug: 'payment-terms.delete', name: 'Eliminar condiciones de pago', group: 'Condiciones de pago' },
 ];

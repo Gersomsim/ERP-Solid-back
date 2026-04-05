@@ -12,5 +12,6 @@ export class UpdateSaleCommand {
     public readonly discount?: number,
     public readonly total?: number,
     public readonly status?: SaleStatus,
+    public readonly paymentTermId?: string | null,
   ) {}
 }

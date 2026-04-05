@@ -30,6 +30,7 @@ export class TypeOrmSaleRepository implements ISaleRepository {
       discount: sale.discount,
       total: sale.total,
       status: sale.status,
+      paymentTermId: sale.paymentTermId,
     });
     const saved = await this.repository.save(entity);
     return this.toDomain(saved);
@@ -83,6 +84,7 @@ export class TypeOrmSaleRepository implements ISaleRepository {
     entity.discount = sale.discount;
     entity.total = sale.total;
     entity.status = sale.status;
+    entity.paymentTermId = sale.paymentTermId;
 
     const saved = await this.repository.save(entity);
     return this.toDomain(saved);
@@ -107,6 +109,7 @@ export class TypeOrmSaleRepository implements ISaleRepository {
     sale.discount = Number(entity.discount);
     sale.total = Number(entity.total);
     sale.status = entity.status;
+    sale.paymentTermId = entity.paymentTermId;
     return sale;
   }
 }

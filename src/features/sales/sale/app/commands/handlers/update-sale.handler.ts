@@ -26,6 +26,7 @@ export class UpdateSaleHandler implements ICommandHandler<UpdateSaleCommand> {
     if (command.discount !== undefined) sale.discount = command.discount;
     if (command.total !== undefined) sale.total = command.total;
     if (command.status !== undefined) sale.status = command.status;
+    if (command.paymentTermId !== undefined) sale.paymentTermId = command.paymentTermId;
 
     return this.saleRepository.update(sale);
   }

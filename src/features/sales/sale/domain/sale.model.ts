@@ -12,6 +12,7 @@ export class Sale {
   discount: number;
   total: number;
   status: SaleStatus;
+  paymentTermId: string | null;
 
   constructor() {}
 
@@ -25,6 +26,7 @@ export class Sale {
     tax: number,
     discount: number,
     total: number,
+    paymentTermId?: string | null,
   ): Sale {
     const sale = new Sale();
     sale.tenantId = tenantId;
@@ -37,6 +39,7 @@ export class Sale {
     sale.discount = discount;
     sale.total = total;
     sale.status = SaleStatus.DRAFT;
+    sale.paymentTermId = paymentTermId ?? null;
     return sale;
   }
 }

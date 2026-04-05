@@ -49,6 +49,7 @@ export class SaleController {
         dto.tax,
         dto.discount,
         dto.total,
+        dto.paymentTermId,
       ),
     );
     return Response.success(sale, 'Sale created successfully');
@@ -101,6 +102,7 @@ export class SaleController {
         dto.discount,
         dto.total,
         dto.status,
+        dto.paymentTermId,
       ),
     );
     return Response.success(sale, 'Sale updated successfully');

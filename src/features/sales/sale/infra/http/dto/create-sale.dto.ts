@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsNumber, IsUUID, Min } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
 
 export class CreateSaleDto {
   @IsUUID()
@@ -30,4 +30,8 @@ export class CreateSaleDto {
   @IsNumber()
   @Min(0)
   total: number;
+
+  @IsUUID()
+  @IsOptional()
+  paymentTermId?: string;
 }

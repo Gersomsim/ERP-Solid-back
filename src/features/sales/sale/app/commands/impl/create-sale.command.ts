@@ -9,5 +9,6 @@ export class CreateSaleCommand {
     public readonly tax: number,
     public readonly discount: number,
     public readonly total: number,
+    public readonly paymentTermId?: string | null,
   ) {}
 }
