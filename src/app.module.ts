@@ -24,6 +24,9 @@ import { SaleReturnModule } from './features/sales/sale-return/infra/sale-return
 import { SaleReturnItemModule } from './features/sales/sale-return-item/infra/sale-return-item.module';
 import { SaleItemModule } from './features/sales/sale-item/infra/sale-item.module';
 import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-payment.module';
+import { CommissionRuleModule } from './features/sales/commission-rule/infra/commission-rule.module';
+import { CommissionModule } from './features/sales/commission/infra/commission.module';
+import { CommissionPaymentModule } from './features/sales/commission-payment/infra/commission-payment.module';
 
 @Module({
   imports: [
@@ -48,6 +51,9 @@ import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-paym
     PriceListItemModule,
     SaleReturnModule,
     SaleReturnItemModule,
+    CommissionRuleModule,
+    CommissionModule,
+    CommissionPaymentModule,
   ],
   controllers: [],
   providers: [

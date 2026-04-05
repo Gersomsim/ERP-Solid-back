@@ -96,4 +96,20 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'sale-return-items.view', name: 'Ver items de devoluciones', group: 'Items de devoluciones de venta' },
   { slug: 'sale-return-items.create', name: 'Crear items de devoluciones', group: 'Items de devoluciones de venta' },
   { slug: 'sale-return-items.delete', name: 'Eliminar items de devoluciones', group: 'Items de devoluciones de venta' },
+
+  // ── Reglas de comision ────────────────────────────────────
+  { slug: 'commission-rules.view', name: 'Ver reglas de comision', group: 'Reglas de comision' },
+  { slug: 'commission-rules.create', name: 'Crear reglas de comision', group: 'Reglas de comision' },
+  { slug: 'commission-rules.update', name: 'Actualizar reglas de comision', group: 'Reglas de comision' },
+  { slug: 'commission-rules.delete', name: 'Eliminar reglas de comision', group: 'Reglas de comision' },
+
+  // ── Comisiones ────────────────────────────────────────────
+  { slug: 'commissions.view', name: 'Ver comisiones', group: 'Comisiones' },
+  { slug: 'commissions.update', name: 'Gestionar comisiones', group: 'Comisiones' },
+
+  // ── Pagos de comision ─────────────────────────────────────
+  { slug: 'commission-payments.view', name: 'Ver pagos de comision', group: 'Pagos de comision' },
+  { slug: 'commission-payments.create', name: 'Crear pagos de comision', group: 'Pagos de comision' },
+  { slug: 'commission-payments.update', name: 'Gestionar pagos de comision', group: 'Pagos de comision' },
+  { slug: 'commission-payments.delete', name: 'Eliminar pagos de comision', group: 'Pagos de comision' },
 ];

@@ -89,4 +89,20 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'sale-return-items.view',
   'sale-return-items.create',
   'sale-return-items.delete',
+
+  // ── Reglas de comision ────────────────────────────────────
+  'commission-rules.view',
+  'commission-rules.create',
+  'commission-rules.update',
+  'commission-rules.delete',
+
+  // ── Comisiones ────────────────────────────────────────────
+  'commissions.view',
+  'commissions.update',
+
+  // ── Pagos de comision ─────────────────────────────────────
+  'commission-payments.view',
+  'commission-payments.create',
+  'commission-payments.update',
+  'commission-payments.delete',
 ];
