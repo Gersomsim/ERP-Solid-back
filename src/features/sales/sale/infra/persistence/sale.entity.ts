@@ -40,7 +40,7 @@ export class SaleEntity {
   @Column({ name: 'subtotal' })
   subtotal: number;
 
-  @Column({ name: 'payment_term_id', nullable: true })
+  @Column({ name: 'payment_term_id', nullable: true, type: 'uuid' })
   paymentTermId: string | null;
 
   @Column({ name: 'status', default: 'draft' })
