@@ -66,4 +66,16 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'product-sales-data.create',
   'product-sales-data.update',
   'product-sales-data.delete',
+
+  // ── Listas de precios ─────────────────────────────────────
+  'price-lists.view',
+  'price-lists.create',
+  'price-lists.update',
+  'price-lists.delete',
+
+  // ── Items de lista de precios ─────────────────────────────
+  'price-list-items.view',
+  'price-list-items.create',
+  'price-list-items.update',
+  'price-list-items.delete',
 ];

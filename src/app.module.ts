@@ -18,6 +18,8 @@ import { RoleModule } from './features/role/infra/role.module';
 import { CustomerModule } from './features/sales/customer/infra/customer.module';
 import { ProductSalesDataModule } from './features/sales/product-sales-data/infra/product-sales-data.module';
 import { SaleAgentModule } from './features/sales/sale-agent/infra/sale-agent.module';
+import { PriceListModule } from './features/sales/price-list/infra/price-list.module';
+import { PriceListItemModule } from './features/sales/price-list-item/infra/price-list-item.module';
 import { SaleItemModule } from './features/sales/sale-item/infra/sale-item.module';
 import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-payment.module';
 
@@ -40,6 +42,8 @@ import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-paym
     ProductModule,
     ProductSalesDataModule,
     SaleItemModule,
+    PriceListModule,
+    PriceListItemModule,
   ],
   controllers: [],
   providers: [

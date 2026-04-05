@@ -73,4 +73,16 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'product-sales-data.create', name: 'Crear datos de venta de producto', group: 'Datos de venta de producto' },
   { slug: 'product-sales-data.update', name: 'Actualizar datos de venta de producto', group: 'Datos de venta de producto' },
   { slug: 'product-sales-data.delete', name: 'Eliminar datos de venta de producto', group: 'Datos de venta de producto' },
+
+  // ── Listas de precios ─────────────────────────────────────
+  { slug: 'price-lists.view', name: 'Ver listas de precios', group: 'Listas de precios' },
+  { slug: 'price-lists.create', name: 'Crear listas de precios', group: 'Listas de precios' },
+  { slug: 'price-lists.update', name: 'Actualizar listas de precios', group: 'Listas de precios' },
+  { slug: 'price-lists.delete', name: 'Eliminar listas de precios', group: 'Listas de precios' },
+
+  // ── Items de lista de precios ─────────────────────────────
+  { slug: 'price-list-items.view', name: 'Ver items de lista de precios', group: 'Items de lista de precios' },
+  { slug: 'price-list-items.create', name: 'Crear items de lista de precios', group: 'Items de lista de precios' },
+  { slug: 'price-list-items.update', name: 'Actualizar items de lista de precios', group: 'Items de lista de precios' },
+  { slug: 'price-list-items.delete', name: 'Eliminar items de lista de precios', group: 'Items de lista de precios' },
 ];
