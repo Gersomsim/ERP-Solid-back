@@ -13,12 +13,13 @@ import { DatabaseModule } from './core/database/database.module';
 import { MailerModule } from './core/mailer/mailer.module';
 import { PaymentMethodModule } from './features/finance/payment-method/infra/payment-method.module';
 import { PermissionModule } from './features/permission/infra/permission.module';
+import { ProductModule } from './features/products/product/infra/product.module';
 import { RoleModule } from './features/role/infra/role.module';
 import { CustomerModule } from './features/sales/customer/infra/customer.module';
-import { SaleAgentModule } from './features/sales/sale-agent/infra/sale-agent.module';
-import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-payment.module';
-import { ProductModule } from './features/products/product/product.module';
 import { ProductSalesDataModule } from './features/sales/product-sales-data/product-sales-data.module';
+import { SaleAgentModule } from './features/sales/sale-agent/infra/sale-agent.module';
+import { SaleItemModule } from './features/sales/sale-item/infra/sale-item.module';
+import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-payment.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { ProductSalesDataModule } from './features/sales/product-sales-data/prod
     PaymentMethodModule,
     ProductModule,
     ProductSalesDataModule,
+    SaleItemModule,
   ],
   controllers: [],
   providers: [

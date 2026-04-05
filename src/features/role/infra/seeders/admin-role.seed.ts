@@ -54,4 +54,10 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'sale-payments.create',
   'sale-payments.update',
   'sale-payments.delete',
+
+  // ── Items de venta ────────────────────────────────────────
+  'sale-items.view',
+  'sale-items.create',
+  'sale-items.update',
+  'sale-items.delete',
 ];
