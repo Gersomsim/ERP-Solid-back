@@ -111,4 +111,10 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'payment-terms.create',
   'payment-terms.update',
   'payment-terms.delete',
+
+  // ── Metas de ventas ───────────────────────────────────────
+  'sale-targets.view',
+  'sale-targets.create',
+  'sale-targets.update',
+  'sale-targets.delete',
 ];

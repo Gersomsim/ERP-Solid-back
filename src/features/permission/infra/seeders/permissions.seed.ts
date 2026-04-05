@@ -118,4 +118,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'payment-terms.create', name: 'Crear condiciones de pago', group: 'Condiciones de pago' },
   { slug: 'payment-terms.update', name: 'Actualizar condiciones de pago', group: 'Condiciones de pago' },
   { slug: 'payment-terms.delete', name: 'Eliminar condiciones de pago', group: 'Condiciones de pago' },
+
+  // ── Metas de ventas ───────────────────────────────────────
+  { slug: 'sale-targets.view', name: 'Ver metas de ventas', group: 'Metas de ventas' },
+  { slug: 'sale-targets.create', name: 'Crear metas de ventas', group: 'Metas de ventas' },
+  { slug: 'sale-targets.update', name: 'Actualizar metas de ventas', group: 'Metas de ventas' },
+  { slug: 'sale-targets.delete', name: 'Eliminar metas de ventas', group: 'Metas de ventas' },
 ];

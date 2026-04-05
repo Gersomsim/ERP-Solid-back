@@ -28,6 +28,7 @@ import { CommissionRuleModule } from './features/sales/commission-rule/infra/com
 import { CommissionModule } from './features/sales/commission/infra/commission.module';
 import { CommissionPaymentModule } from './features/sales/commission-payment/infra/commission-payment.module';
 import { PaymentTermModule } from './features/sales/payment-term/infra/payment-term.module';
+import { SaleTargetModule } from './features/sales/sale-target/infra/sale-target.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { PaymentTermModule } from './features/sales/payment-term/infra/payment-t
     CommissionModule,
     CommissionPaymentModule,
     PaymentTermModule,
+    SaleTargetModule,
   ],
   controllers: [],
   providers: [
