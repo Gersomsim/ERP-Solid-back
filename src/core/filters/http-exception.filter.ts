@@ -13,6 +13,8 @@ import {
   ConflictException,
   ExceptionFilter,
   HttpException,
+  HttpStatus,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -20,6 +22,7 @@ import { Response } from 'express';
 
 @Catch()
 export class HttpExceptionFilter<T> implements ExceptionFilter {
+  private readonly logger = new Logger('ExceptionFilter');
   catch(exception: T, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
@@ -149,6 +152,16 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     return errorCodes[status] || 'UNKNOWN_ERROR';
   }
   private catcheError(errResponse: any, request: Request, exception: any) {
-    console.log(exception);
+    const status =
+      exception instanceof HttpException
+        ? exception.getStatus()
+        : HttpStatus.INTERNAL_SERVER_ERROR;
+
+    const correlationId = request['correlationId'];
+
+    this.logger.error(
+      `[${correlationId}] ${request.method} ${request.url} - Status: ${status}`,
+      exception.stack,
+    );
   }
 }

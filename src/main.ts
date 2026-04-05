@@ -1,6 +1,9 @@
+import { HttpExceptionFilter } from '@core/filters/http-exception.filter';
+import { loggerConfig } from '@core/logger/logger.config';
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { WinstonModule } from 'nest-winston';
 import { AppModule } from './app.module';
 import { envs } from './core/config/envs.config';
 
@@ -22,6 +25,9 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: envs.api.version,
   });
+
+  app.useLogger(WinstonModule.createLogger(loggerConfig));
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle(envs.app.name)
