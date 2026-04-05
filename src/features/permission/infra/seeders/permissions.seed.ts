@@ -43,4 +43,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'customers.create', name: 'Crear clientes', group: 'Clientes' },
   { slug: 'customers.update', name: 'Actualizar clientes', group: 'Clientes' },
   { slug: 'customers.delete', name: 'Eliminar clientes', group: 'Clientes' },
+
+  // ── Agentes de venta ──────────────────────────────────────
+  { slug: 'sale-agents.view', name: 'Ver agentes de venta', group: 'Agentes de venta' },
+  { slug: 'sale-agents.create', name: 'Crear agentes de venta', group: 'Agentes de venta' },
+  { slug: 'sale-agents.update', name: 'Actualizar agentes de venta', group: 'Agentes de venta' },
+  { slug: 'sale-agents.delete', name: 'Eliminar agentes de venta', group: 'Agentes de venta' },
 ];
