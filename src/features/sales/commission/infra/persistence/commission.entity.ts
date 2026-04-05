@@ -33,7 +33,7 @@ export class CommissionEntity {
   @Column({ default: CommissionStatus.PENDING })
   status: CommissionStatus;
 
-  @Column({ name: 'commission_payment_id', nullable: true })
+  @Column({ name: 'commission_payment_id', nullable: true, type: 'uuid' })
   commissionPaymentId: string | null;
 
   @CreateDateColumn({ name: 'created_at' })
