@@ -1,13 +1,14 @@
-import { SaleAgent, ISaleAgentRepository } from '@features/sales/sale-agent/domain';
+import {
+  SaleAgent,
+  type ISaleAgentRepository,
+} from '@features/sales/sale-agent/domain';
 import { SaleAgentToken } from '@features/sales/sale-agent/infra/persistence';
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreateSaleAgentCommand } from '../impl/create-sale-agent.command';
 
 @CommandHandler(CreateSaleAgentCommand)
-export class CreateSaleAgentHandler
-  implements ICommandHandler<CreateSaleAgentCommand>
-{
+export class CreateSaleAgentHandler implements ICommandHandler<CreateSaleAgentCommand> {
   constructor(
     @Inject(SaleAgentToken)
     private readonly saleAgentRepository: ISaleAgentRepository,

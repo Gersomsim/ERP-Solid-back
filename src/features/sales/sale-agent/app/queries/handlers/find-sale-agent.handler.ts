@@ -1,5 +1,8 @@
 import { EntityNotFoundException } from '@features/common/exceptions';
-import { ISaleAgentRepository, SaleAgent } from '@features/sales/sale-agent/domain';
+import {
+  type ISaleAgentRepository,
+  SaleAgent,
+} from '@features/sales/sale-agent/domain';
 import { SaleAgentToken } from '@features/sales/sale-agent/infra/persistence';
 import { Inject } from '@nestjs/common';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';

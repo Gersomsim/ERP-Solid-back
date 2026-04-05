@@ -10,8 +10,8 @@ import {
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SaleAgentController } from './infra/http/sale-agent.controller';
-import { SaleAgentEntity, SaleAgentProvider } from './infra/persistence';
+import { SaleAgentController } from './http/sale-agent.controller';
+import { SaleAgentEntity, SaleAgentProvider } from './persistence';
 
 @Module({
   imports: [TypeOrmModule.forFeature([SaleAgentEntity]), CqrsModule],

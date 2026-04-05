@@ -1,14 +1,15 @@
 import { EntityNotFoundException } from '@features/common/exceptions';
-import { ISaleAgentRepository, SaleAgent } from '@features/sales/sale-agent/domain';
+import {
+  type ISaleAgentRepository,
+  SaleAgent,
+} from '@features/sales/sale-agent/domain';
 import { SaleAgentToken } from '@features/sales/sale-agent/infra/persistence';
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { UpdateSaleAgentCommand } from '../impl/update-sale-agent.command';
 
 @CommandHandler(UpdateSaleAgentCommand)
-export class UpdateSaleAgentHandler
-  implements ICommandHandler<UpdateSaleAgentCommand>
-{
+export class UpdateSaleAgentHandler implements ICommandHandler<UpdateSaleAgentCommand> {
   constructor(
     @Inject(SaleAgentToken)
     private readonly saleAgentRepository: ISaleAgentRepository,
