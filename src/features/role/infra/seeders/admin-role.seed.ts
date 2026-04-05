@@ -42,4 +42,10 @@ export const ADMIN_ROLE_PERMISSIONS_SLUGS: string[] = [
   'sale-agents.create',
   'sale-agents.update',
   'sale-agents.delete',
+
+  // ── Ventas ────────────────────────────────────────────────
+  'sales.view',
+  'sales.create',
+  'sales.update',
+  'sales.delete',
 ];
