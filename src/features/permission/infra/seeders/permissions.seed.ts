@@ -67,4 +67,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'sale-items.create', name: 'Crear items de venta', group: 'Items de venta' },
   { slug: 'sale-items.update', name: 'Actualizar items de venta', group: 'Items de venta' },
   { slug: 'sale-items.delete', name: 'Eliminar items de venta', group: 'Items de venta' },
+
+  // ── Datos de venta de producto ────────────────────────────
+  { slug: 'product-sales-data.view', name: 'Ver datos de venta de producto', group: 'Datos de venta de producto' },
+  { slug: 'product-sales-data.create', name: 'Crear datos de venta de producto', group: 'Datos de venta de producto' },
+  { slug: 'product-sales-data.update', name: 'Actualizar datos de venta de producto', group: 'Datos de venta de producto' },
+  { slug: 'product-sales-data.delete', name: 'Eliminar datos de venta de producto', group: 'Datos de venta de producto' },
 ];

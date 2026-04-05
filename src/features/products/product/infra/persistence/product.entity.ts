@@ -35,6 +35,9 @@ export class ProductEntity {
   @Column({ default: false })
   service: boolean;
 
+  @Column()
+  tenantId: string;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
