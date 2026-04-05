@@ -85,4 +85,15 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'price-list-items.create', name: 'Crear items de lista de precios', group: 'Items de lista de precios' },
   { slug: 'price-list-items.update', name: 'Actualizar items de lista de precios', group: 'Items de lista de precios' },
   { slug: 'price-list-items.delete', name: 'Eliminar items de lista de precios', group: 'Items de lista de precios' },
+
+  // ── Devoluciones de venta ─────────────────────────────────
+  { slug: 'sale-returns.view', name: 'Ver devoluciones de venta', group: 'Devoluciones de venta' },
+  { slug: 'sale-returns.create', name: 'Crear devoluciones de venta', group: 'Devoluciones de venta' },
+  { slug: 'sale-returns.update', name: 'Gestionar devoluciones de venta', group: 'Devoluciones de venta' },
+  { slug: 'sale-returns.delete', name: 'Eliminar devoluciones de venta', group: 'Devoluciones de venta' },
+
+  // ── Items de devoluciones de venta ────────────────────────
+  { slug: 'sale-return-items.view', name: 'Ver items de devoluciones', group: 'Items de devoluciones de venta' },
+  { slug: 'sale-return-items.create', name: 'Crear items de devoluciones', group: 'Items de devoluciones de venta' },
+  { slug: 'sale-return-items.delete', name: 'Eliminar items de devoluciones', group: 'Items de devoluciones de venta' },
 ];

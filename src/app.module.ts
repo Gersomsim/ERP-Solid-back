@@ -20,6 +20,8 @@ import { ProductSalesDataModule } from './features/sales/product-sales-data/infr
 import { SaleAgentModule } from './features/sales/sale-agent/infra/sale-agent.module';
 import { PriceListModule } from './features/sales/price-list/infra/price-list.module';
 import { PriceListItemModule } from './features/sales/price-list-item/infra/price-list-item.module';
+import { SaleReturnModule } from './features/sales/sale-return/infra/sale-return.module';
+import { SaleReturnItemModule } from './features/sales/sale-return-item/infra/sale-return-item.module';
 import { SaleItemModule } from './features/sales/sale-item/infra/sale-item.module';
 import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-payment.module';
 
@@ -44,6 +46,8 @@ import { SalePaymentModule } from './features/sales/sale-payment/infra/sale-paym
     SaleItemModule,
     PriceListModule,
     PriceListItemModule,
+    SaleReturnModule,
+    SaleReturnItemModule,
   ],
   controllers: [],
   providers: [
