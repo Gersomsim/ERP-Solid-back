@@ -55,4 +55,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'sales.create', name: 'Crear ventas', group: 'Ventas' },
   { slug: 'sales.update', name: 'Actualizar ventas', group: 'Ventas' },
   { slug: 'sales.delete', name: 'Eliminar ventas', group: 'Ventas' },
+
+  // ── Pagos de venta ────────────────────────────────────────
+  { slug: 'sale-payments.view', name: 'Ver pagos de venta', group: 'Pagos de venta' },
+  { slug: 'sale-payments.create', name: 'Crear pagos de venta', group: 'Pagos de venta' },
+  { slug: 'sale-payments.update', name: 'Actualizar pagos de venta', group: 'Pagos de venta' },
+  { slug: 'sale-payments.delete', name: 'Eliminar pagos de venta', group: 'Pagos de venta' },
 ];
