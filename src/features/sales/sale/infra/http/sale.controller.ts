@@ -2,6 +2,7 @@ import { Auth, GetTenant, Permissions } from '@core/decorators';
 import { Response } from '@core/utils';
 import { Pagination } from '@features/common/interfaces';
 import {
+  ConfirmSaleCommand,
   CreateSaleCommand,
   DeleteSaleCommand,
   UpdateSaleCommand,
@@ -103,6 +104,15 @@ export class SaleController {
       ),
     );
     return Response.success(sale, 'Sale updated successfully');
+  }
+
+  @Patch(':id/confirm')
+  @Permissions('sales.update')
+  async confirm(@Param('id') id: string) {
+    const sale = await this.commandBus.execute<ConfirmSaleCommand, Sale>(
+      new ConfirmSaleCommand(id),
+    );
+    return Response.success(sale, 'Sale confirmed successfully');
   }
 
   @Delete(':id')

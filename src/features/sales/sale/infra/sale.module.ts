@@ -1,4 +1,5 @@
 import {
+  ConfirmSaleHandler,
   CreateSaleHandler,
   DeleteSaleHandler,
   UpdateSaleHandler,
@@ -21,6 +22,7 @@ import { SaleEntity, SaleProvider } from './persistence';
     CreateSaleHandler,
     UpdateSaleHandler,
     DeleteSaleHandler,
+    ConfirmSaleHandler,
     FindAllSalesHandler,
     FindSaleHandler,
   ],
