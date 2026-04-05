@@ -61,7 +61,7 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
       },
       meta: {
         timestamp: new Date().toISOString(),
-        requestId: crypto.randomUUID(),
+        requestId: request['correlationId'],
         path: request.url,
         method: request.method,
         status: status,

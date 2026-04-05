@@ -25,6 +25,6 @@ import { TenantEntity, TenantProvider } from './persistence';
     UpdateTenantSettingsHandler,
     FindTenantHandler,
   ],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, TenantProvider],
 })
 export class TenantModule {}

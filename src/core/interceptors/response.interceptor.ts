@@ -10,6 +10,8 @@ import { map, Observable } from 'rxjs';
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const request = context.switchToHttp().getRequest();
+    const correlationId = request['correlationId'];
     return next.handle().pipe(
       map((data) => {
         const {
@@ -29,7 +31,7 @@ export class ResponseInterceptor implements NestInterceptor {
             method: context.switchToHttp().getRequest().method,
             pagination,
             path: context.switchToHttp().getRequest().url,
-            requestId: crypto.randomUUID(),
+            requestId: correlationId,
             status: context.switchToHttp().getResponse().statusCode,
             timestamp: new Date().toISOString(),
           },

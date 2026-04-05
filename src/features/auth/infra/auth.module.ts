@@ -8,6 +8,7 @@ import { TokenModule } from '@features/token/infra/token.module';
 import { UserModule } from '@features/user/infra/user.module';
 
 import { MailerModule } from '@core/mailer/mailer.module';
+import { TenantModule } from '@features/tenant/infra/tenant.module';
 import { forwardRef, Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { JwtModule } from '@nestjs/jwt';
@@ -34,6 +35,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     forwardRef(() => TokenModule),
     forwardRef(() => RoleModule),
     forwardRef(() => PermissionModule),
+    forwardRef(() => TenantModule),
     MailerModule,
     CqrsModule,
     TypeOrmModule.forFeature([RefreshTokenEntity]),

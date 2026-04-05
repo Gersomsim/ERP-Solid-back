@@ -1,11 +1,12 @@
 import { HttpExceptionFilter } from '@core/filters/http-exception.filter';
 import { ResponseInterceptor } from '@core/interceptors/response.interceptor';
+import { CorrelationIdMiddleware } from '@core/middlewares';
 import { AuthModule } from '@features/auth/infra/auth.module';
 import { ProfileModule } from '@features/profile/infra/profile.module';
 import { TenantModule } from '@features/tenant/infra/tenant.module';
 import { TokenModule } from '@features/token/infra/token.module';
 import { UserModule } from '@features/user/infra/user.module';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { DatabaseModule } from './core/database/database.module';
 import { MailerModule } from './core/mailer/mailer.module';
@@ -39,4 +40,8 @@ import { RoleModule } from './features/role/infra/role.module';
   ],
   exports: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CorrelationIdMiddleware).forRoutes('*');
+  }
+}
