@@ -22,6 +22,7 @@ interface ENV_SCHEMA {
   MAIL_FROM: string;
   APP_ENV: 'development' | 'production' | 'test';
   APP_URL: string;
+  APP_REGISTER: string;
 }
 
 const schema = joi
@@ -46,6 +47,7 @@ const schema = joi
     MAIL_FROM: joi.string().required(),
     APP_ENV: joi.string().required(),
     APP_URL: joi.string().required(),
+    APP_REGISTER: joi.string().required(),
   })
   .unknown();
 
@@ -63,6 +65,7 @@ export const envs = {
     env: value.APP_ENV,
     url: value.APP_URL,
     name: value.APP_NAME,
+    register: value.APP_REGISTER,
   },
   api: {
     port: value.API_PORT,
