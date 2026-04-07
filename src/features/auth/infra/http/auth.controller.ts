@@ -38,7 +38,7 @@ export class AuthController {
       httpOnly: true,
       secure: envs.app.env === 'production',
       sameSite: 'strict',
-      maxAge: envs.jwt.refreshExpiresIn * 1000,
+      maxAge: envs.jwt.refreshExpiresIn * 24 * 60 * 60 * 1000,
       path: '/',
     });
 
@@ -74,7 +74,7 @@ export class AuthController {
       httpOnly: true,
       secure: envs.app.env === 'production',
       sameSite: 'strict',
-      maxAge: envs.jwt.refreshExpiresIn * 1000,
+      maxAge: envs.jwt.refreshExpiresIn * 24 * 60 * 60 * 1000,
       path: '/',
     });
 
