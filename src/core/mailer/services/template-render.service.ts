@@ -51,7 +51,7 @@ export class TemplateRendererService {
       const context = {
         ...data,
         appName: envs.app.name,
-        appUrl: envs.app.url,
+        appUrl: envs.app.frontendUrl,
         supportEmail: envs.mail.from,
         currentYear: new Date().getFullYear(),
       };
@@ -95,7 +95,7 @@ export class TemplateRendererService {
 
     // Helper para URLs completas
     handlebars.registerHelper('fullUrl', (path: string) => {
-      const baseUrl = envs.app.url;
+      const baseUrl = envs.app.frontendUrl;
       return `${baseUrl}${path.startsWith('/') ? '' : '/'}${path}`;
     });
 

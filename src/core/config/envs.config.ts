@@ -21,8 +21,8 @@ interface ENV_SCHEMA {
   MAIL_PASSWORD: string;
   MAIL_FROM: string;
   APP_ENV: 'development' | 'production' | 'test';
-  APP_URL: string;
   APP_REGISTER: string;
+  FRONTEND_URL: string;
 }
 
 const schema = joi
@@ -46,8 +46,8 @@ const schema = joi
     MAIL_PASSWORD: joi.string().required(),
     MAIL_FROM: joi.string().required(),
     APP_ENV: joi.string().required(),
-    APP_URL: joi.string().required(),
     APP_REGISTER: joi.string().required(),
+    FRONTEND_URL: joi.string().required(),
   })
   .unknown();
 
@@ -63,8 +63,8 @@ if (error) {
 export const envs = {
   app: {
     env: value.APP_ENV,
-    url: value.APP_URL,
     name: value.APP_NAME,
+    frontendUrl: value.FRONTEND_URL,
     register: value.APP_REGISTER,
   },
   api: {

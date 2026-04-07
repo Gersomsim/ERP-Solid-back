@@ -36,7 +36,7 @@ export class ForgotPasswordHandler {
 
     const token = Token.create(user.id, 'reset-password');
     const data = {
-      url: `${envs.app.url}/${envs.app.register}?token=${token.rawToken}`,
+      url: `${envs.app.frontendUrl}/${envs.app.register}?token=${token.rawToken}`,
       expiresAt: token.expiresAt,
     };
     await this.hashRepository.create(token);

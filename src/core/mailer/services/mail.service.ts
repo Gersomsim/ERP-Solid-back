@@ -14,7 +14,7 @@ export class MailService implements IMailerRepository {
   }
   private data() {
     return {
-      url: envs.app.url,
+      url: envs.app.frontendUrl,
       logo: 'https://d1oco4z2z1fhwp.cloudfront.net/templates/default/7056/illustration_png-03.png',
       emailContact: envs.mail.from,
     };
