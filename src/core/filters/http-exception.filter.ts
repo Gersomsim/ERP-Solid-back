@@ -127,11 +127,11 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     }
     if (exception instanceof NotFoundException) {
       details = exceptionResponse.message;
-      message = exceptionResponse.error;
+      message = exceptionResponse.message;
     }
     if (exception instanceof UnauthorizedException) {
       details = exceptionResponse.message;
-      message = exceptionResponse.error;
+      message = exceptionResponse.message;
     }
     return { message, details };
   }

@@ -1,5 +1,12 @@
+import { Response } from '@core/utils';
 import { ValidateTokenQuery } from '@features/token/app/queries/impl/validate-token.query';
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { ValidateTokenDto } from './DTO/validate-token.dto';
 
@@ -13,6 +20,9 @@ export class TokenController {
     const result = await this.queryBus.execute<ValidateTokenQuery, boolean>(
       new ValidateTokenQuery(body.token, body.type),
     );
-    return { valid: result };
+    if (!result) {
+      throw new UnauthorizedException('Token invalido');
+    }
+    return Response.success({ valid: result }, 'Token validado correctamente');
   }
 }
