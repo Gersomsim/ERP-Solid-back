@@ -3,6 +3,14 @@ import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 export class UpdateCustomerDto {
   @IsString()
   @IsOptional()
+  id?: string;
+
+  @IsString()
+  @IsOptional()
+  tenantId?: string;
+
+  @IsString()
+  @IsOptional()
   name?: string;
 
   @IsString()
