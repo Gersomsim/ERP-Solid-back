@@ -8,7 +8,7 @@ import {
 } from '@features/sales/sale-agent/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsWhere, Like, Repository } from 'typeorm';
+import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { SaleAgentEntity } from './sale-agent.entity';
 
 @Injectable()
@@ -34,12 +34,14 @@ export class TypeOrmSaleAgentRepository implements ISaleAgentRepository {
     return entity ? this.toDomain(entity) : null;
   }
 
-  async findAll(params: FindAllSaleAgentsParams): Promise<Pagination<SaleAgent>> {
+  async findAll(
+    params: FindAllSaleAgentsParams,
+  ): Promise<Pagination<SaleAgent>> {
     const { tenantId, page = 1, limit = 10, search } = params;
     const where: FindOptionsWhere<SaleAgentEntity> = { tenantId };
 
     if (search) {
-      where.name = Like(`%${search}%`);
+      where.name = ILike(`%${search}%`);
     }
 
     const [items, totalItems] = await this.repository.findAndCount({

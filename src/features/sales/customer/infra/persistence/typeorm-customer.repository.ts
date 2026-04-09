@@ -8,7 +8,7 @@ import {
 } from '@features/sales/customer/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsWhere, Like, Repository } from 'typeorm';
+import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { CustomerEntity } from './customer.entity';
 
 @Injectable()
@@ -46,7 +46,8 @@ export class TypeOrmCustomerRepository implements ICustomerRepository {
     const where: FindOptionsWhere<CustomerEntity> = { tenantId };
 
     if (search) {
-      where.name = Like(`%${search}%`);
+      where.name = ILike(`%${search}%`);
+      where.taxId = ILike(`%${search}%`);
     }
 
     const [items, totalItems] = await this.repository.findAndCount({

@@ -8,7 +8,7 @@ import {
 } from '@features/sales/sale/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsWhere, Like, Repository } from 'typeorm';
+import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { SaleEntity } from './sale.entity';
 
 @Injectable()
@@ -53,7 +53,7 @@ export class TypeOrmSaleRepository implements ISaleRepository {
     } = params;
     const where: FindOptionsWhere<SaleEntity> = { tenantId };
 
-    if (search) where.folio = Like(`%${search}%`);
+    if (search) where.folio = ILike(`%${search}%`);
     if (status) where.status = status;
     if (customerId) where.customerId = customerId;
     if (saleAgentId) where.saleAgentId = saleAgentId;
