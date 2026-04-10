@@ -17,4 +17,12 @@ export class UpdatePaymentTermDto {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
+
+  @IsString()
+  @IsOptional()
+  id?: string;
+
+  @IsString()
+  @IsOptional()
+  tenantId?: string;
 }

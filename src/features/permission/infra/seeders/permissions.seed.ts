@@ -124,4 +124,10 @@ export const PERMISSIONS_SEED: PermissionSeed[] = [
   { slug: 'sale-targets.create', name: 'Crear metas de ventas', group: 'Metas de ventas' },
   { slug: 'sale-targets.update', name: 'Actualizar metas de ventas', group: 'Metas de ventas' },
   { slug: 'sale-targets.delete', name: 'Eliminar metas de ventas', group: 'Metas de ventas' },
+
+  // ── Productos ─────────────────────────────────────────────
+  { slug: 'products.view', name: 'Ver productos', group: 'Productos' },
+  { slug: 'products.create', name: 'Crear productos', group: 'Productos' },
+  { slug: 'products.update', name: 'Actualizar productos', group: 'Productos' },
+  { slug: 'products.delete', name: 'Eliminar productos', group: 'Productos' },
 ];
