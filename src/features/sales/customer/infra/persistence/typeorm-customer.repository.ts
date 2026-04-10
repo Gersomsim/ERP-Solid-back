@@ -46,8 +46,8 @@ export class TypeOrmCustomerRepository implements ICustomerRepository {
     const where: FindOptionsWhere<CustomerEntity> = { tenantId };
 
     if (search) {
+      console.log(search);
       where.name = ILike(`%${search}%`);
-      where.taxId = ILike(`%${search}%`);
     }
 
     const [items, totalItems] = await this.repository.findAndCount({
